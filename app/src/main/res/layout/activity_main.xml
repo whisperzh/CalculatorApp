@@ -7,12 +7,225 @@
     tools:context=".MainActivity">
 
     <TextView
-        android:layout_width="wrap_content"
+        android:id="@+id/resultText"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="Hello World!"
+        android:layout_marginTop="72dp"
+        android:editable="true"
+        android:text="0.0"
+        android:textAlignment="viewEnd"
+        android:textSize="80sp"
+        app:layout_constraintBottom_toTopOf="@+id/buttonContainer"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <LinearLayout
+        android:id="@+id/buttonContainer"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/resultText">
+
+        <TableLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" >
+
+                <Button
+                    android:id="@+id/button1"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:backgroundTint="@color/material_dynamic_neutral_variant60"
+                    android:text="1"
+                    android:textColor="@color/material_dynamic_neutral10"
+                    android:textSize="45sp" />
+
+                <Button
+                    android:id="@+id/button2"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:backgroundTint="@color/material_dynamic_neutral_variant60"
+                    android:text="2"
+                    android:textColor="@color/material_dynamic_neutral10"
+                    android:textSize="45sp" />
+
+                <Button
+                    android:id="@+id/button3"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:backgroundTint="@color/material_dynamic_neutral_variant60"
+                    android:text="3"
+                    android:textColor="@color/material_dynamic_neutral10"
+                    android:textSize="45sp" />
+
+                <Button
+                    android:id="@+id/buttonAdd"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:backgroundTint="@color/material_dynamic_neutral_variant60"
+                    android:text="+"
+                    android:textColor="@color/material_dynamic_neutral10"
+                    android:textSize="45sp" />
+
+                <Button
+                    android:id="@+id/buttonMul"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:backgroundTint="@color/material_dynamic_neutral_variant60"
+                    android:text="*"
+                    android:textColor="@color/material_dynamic_neutral10"
+                    android:textSize="45sp" />
+
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <Button
+                    android:id="@+id/button4"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:backgroundTint="@color/material_dynamic_neutral_variant60"
+                    android:text="4"
+                    android:textColor="@color/material_dynamic_neutral10"
+                    android:textSize="45sp" />
+
+                <Button
+                    android:id="@+id/button5"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:backgroundTint="@color/material_dynamic_neutral_variant60"
+                    android:text="5"
+                    android:textColor="@color/material_dynamic_neutral10"
+                    android:textSize="45sp" />
+
+                <Button
+                    android:id="@+id/button6"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:backgroundTint="@color/material_dynamic_neutral_variant60"
+                    android:text="6"
+                    android:textColor="@color/material_dynamic_neutral10"
+                    android:textSize="45sp" />
+
+                <Button
+                    android:id="@+id/buttonSub"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:backgroundTint="@color/material_dynamic_neutral_variant60"
+                    android:text="-"
+                    android:textColor="@color/material_dynamic_neutral10"
+                    android:textSize="45sp" />
+
+                <Button
+                    android:id="@+id/buttonDiv"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:backgroundTint="@color/material_dynamic_neutral_variant60"
+                    android:text="/"
+                    android:textColor="@color/material_dynamic_neutral10"
+                    android:textSize="45sp" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" >
+
+                <Button
+                    android:id="@+id/button7"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:backgroundTint="@color/material_dynamic_neutral_variant60"
+                    android:text="7"
+                    android:textColor="@color/material_dynamic_neutral10"
+                    android:textSize="45sp" />
+
+                <Button
+                    android:id="@+id/button8"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:backgroundTint="@color/material_dynamic_neutral_variant60"
+                    android:text="8"
+                    android:textColor="@color/material_dynamic_neutral10"
+                    android:textSize="45sp" />
+
+                <Button
+                    android:id="@+id/button9"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:backgroundTint="@color/material_dynamic_neutral_variant60"
+                    android:text="9"
+                    android:textColor="@color/material_dynamic_neutral10"
+                    android:textSize="45sp" />
+
+                <Button
+                    android:id="@+id/buttonSqrt"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:backgroundTint="@color/material_dynamic_neutral_variant60"
+                    android:text="sqrt"
+                    android:textColor="@color/material_dynamic_neutral10"
+                    android:textSize="45sp" />
+
+            </TableRow>
+
+            <TableRow>
+
+                <Button
+                    android:id="@+id/button0"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:backgroundTint="@color/material_dynamic_neutral_variant60"
+                    android:text="0"
+                    android:textColor="@color/material_dynamic_neutral10"
+                    android:textSize="45sp" />
+
+                <Button
+                    android:id="@+id/buttonDot"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:backgroundTint="@color/material_dynamic_neutral_variant60"
+                    android:text="."
+                    android:textColor="@color/material_dynamic_neutral10"
+                    android:textSize="45sp" />
+
+                <Button
+                    android:id="@+id/buttonEqual"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:backgroundTint="@color/material_dynamic_neutral_variant60"
+                    android:text="="
+                    android:textColor="@color/material_dynamic_neutral10"
+                    android:textSize="45sp" />
+            </TableRow>
+
+        </TableLayout>
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
