@@ -6,12 +6,11 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <TextView
+    <EditText
         android:id="@+id/resultText"
         android:layout_width="0dp"
         android:layout_height="94dp"
         android:layout_marginTop="72dp"
-        android:editable="true"
         android:text="0.0"
         android:textAlignment="viewEnd"
         android:textSize="80sp"
