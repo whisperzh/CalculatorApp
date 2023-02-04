@@ -211,9 +211,10 @@ class MainActivity : AppCompatActivity() {
      * This function is bind the buttonClear to a listener
      */
     private fun clearAll(){
-//        binding..setOnClickListener {
-//
-//        }
+        num1= Double.NaN
+        num2=Double.NaN
+        operate_ch=""
+        clearOpt=true
     }
 
 }
