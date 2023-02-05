@@ -2,7 +2,7 @@ package com.bignerdranch.android.calculatorapp
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.Button
+import android.widget.Toast
 import com.bignerdranch.android.calculatorapp.databinding.ActivityMainBinding
 import kotlin.math.sqrt
 
@@ -26,7 +26,7 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
         originalButtonColor=binding.button1.drawingCacheBackgroundColor;
-
+        binding.resultText.isCursorVisible = false
         bindNumber()
 
         clearAll()
@@ -138,6 +138,17 @@ class MainActivity : AppCompatActivity() {
             binding.resultText.setText( binding.resultText.text.toString()+"9")
         }
 
+        binding.buttonDot.setOnClickListener {
+            if(clearOpt)
+            {
+                binding.resultText.setText("");
+                clearOpt=false
+            }
+            if(!binding.resultText.text.toString().contains('.'))
+                binding.resultText.setText( binding.resultText.text.toString()+".")
+        }
+
+
     }
 
     /**
@@ -147,30 +158,63 @@ class MainActivity : AppCompatActivity() {
     private fun bindOperation(){
 
         binding.buttonSub.setOnClickListener {
-            operate_ch="-"
-            clearOpt=true
-            num1=binding.resultText.text.toString().toDouble();
-
+            if(operate_ch!=""&&operate_ch!="sqrt")
+            {
+                num2=binding.resultText.text.toString().toDouble();
+                num1=calculate().toDouble();
+                binding.resultText.setText(num1.toString())
+                operate_ch = "-"
+                clearOpt = true
+            }else {
+                operate_ch = "-"
+                clearOpt = true
+                num1 = binding.resultText.text.toString().toDouble();
+            }
         }
 
         binding.buttonAdd.setOnClickListener {
-            operate_ch="+"
-            clearOpt=true
-            num1=binding.resultText.text.toString().toDouble();
+            if(operate_ch!=""&&operate_ch!="sqrt")
+            {
+                num2=binding.resultText.text.toString().toDouble();
+                num1=calculate().toDouble();
+                binding.resultText.setText(num1.toString())
+                operate_ch = "+"
+                clearOpt = true
+            }else {
+                operate_ch = "+"
+                clearOpt = true
+                num1 = binding.resultText.text.toString().toDouble();
+            }
         }
 
         binding.buttonDiv.setOnClickListener {
-            operate_ch="/"
-            clearOpt=true
-            num1=binding.resultText.text.toString().toDouble();
-
+            if(operate_ch!=""&&operate_ch!="sqrt")
+            {
+                num2=binding.resultText.text.toString().toDouble();
+                num1=calculate().toDouble();
+                binding.resultText.setText(num1.toString())
+                operate_ch = "/"
+                clearOpt = true
+            }else {
+                operate_ch = "/"
+                clearOpt = true
+                num1 = binding.resultText.text.toString().toDouble();
+            }
         }
 
         binding.buttonMul.setOnClickListener {
-            operate_ch="*"
-            clearOpt=true
-            num1=binding.resultText.text.toString().toDouble();
-
+            if(operate_ch!=""&&operate_ch!="sqrt")
+            {
+                num2=binding.resultText.text.toString().toDouble();
+                num1=calculate().toDouble();
+                binding.resultText.setText(num1.toString())
+                operate_ch = "*"
+                clearOpt = true
+            }else {
+                operate_ch = "*"
+                clearOpt = true
+                num1 = binding.resultText.text.toString().toDouble();
+            }
         }
 
         binding.buttonSqrt.setOnClickListener {
@@ -183,12 +227,20 @@ class MainActivity : AppCompatActivity() {
 
         binding.buttonEqual.setOnClickListener {
             num2=binding.resultText.text.toString().toDouble();
-            binding.resultText.setText(calclulate())
+            binding.resultText.setText(calculate())
             clearOpt=true
+            operate_ch=""
+        }
+        binding.buttonClear.setOnClickListener {
+            num1= Double.NaN
+            num2= Double.NaN
+            clearOpt=true
+            operate_ch=""
+            binding.resultText.setText("0.0")
         }
     }
 
-    private fun calclulate():String{
+    private fun calculate():String{
         var ans=0.0
         if(operate_ch.equals("+"))
         {
@@ -201,7 +253,13 @@ class MainActivity : AppCompatActivity() {
             ans=num1*num2
         }else if(operate_ch.equals("/"))
         {
-            ans=num1/num2
+            if(num2==0.0)
+            {
+                Toast.makeText(this, "ERROR, 0 cannot be the divisor", Toast.LENGTH_SHORT).show()
+                clearAll()
+            }else {
+                ans = num1 / num2
+            }
         }
         num1=ans
         return ans.toString()
