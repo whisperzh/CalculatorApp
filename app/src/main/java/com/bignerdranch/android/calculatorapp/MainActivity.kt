@@ -1,5 +1,7 @@
 package com.bignerdranch.android.calculatorapp
 
+import android.content.Context
+import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
@@ -19,6 +21,48 @@ class MainActivity : AppCompatActivity() {
     private var clearOpt:Boolean=true
 
     private var originalButtonColor=0
+
+    override fun onStart() {
+        super.onStart()
+        val shp=this?.getPreferences(Context.MODE_PRIVATE) ?: return
+
+        val num1Str=shp.getString("num1",Double.NaN.toString())
+        num1Str?.let {
+            num1=num1Str.toDouble()
+        }
+
+        val num2Str=shp.getString("num2",Double.NaN.toString())
+        num2Str?.let {
+            num2=num2Str.toDouble()
+        }
+
+        val operate_ch_str=shp.getString("operate_ch","")
+        operate_ch_str?.let {
+            operate_ch=operate_ch_str
+        }
+
+        val clearOpt_str=shp.getBoolean("clearOpt",true)
+        operate_ch_str?.let {
+            clearOpt=clearOpt_str
+        }
+        val resultTxt=shp.getString("resultText","0.0")
+        resultTxt?.let {
+            binding.resultText.setText(resultTxt)
+        }
+
+    }
+
+    override fun onStop() {
+        super.onStop()
+        val shp=this?.getPreferences(Context.MODE_PRIVATE) ?: return
+        var editor=shp.edit()
+        editor.putBoolean("clearOpt",clearOpt)
+        editor.putString("num1",num1.toString())
+        editor.putString("num2",num2.toString())
+        editor.putString("operate_ch",operate_ch)
+        editor.putString("resultText",binding.resultText.text.toString())
+        editor.commit()
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
