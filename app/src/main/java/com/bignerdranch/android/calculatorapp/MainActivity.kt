@@ -22,8 +22,8 @@ class MainActivity : AppCompatActivity() {
 
     private var originalButtonColor=0
 
-    override fun onStart() {
-        super.onStart()
+    override fun onResume() {
+        super.onResume()
         val shp=this?.getPreferences(Context.MODE_PRIVATE) ?: return
 
         val num1Str=shp.getString("num1",Double.NaN.toString())
@@ -52,8 +52,8 @@ class MainActivity : AppCompatActivity() {
 
     }
 
-    override fun onStop() {
-        super.onStop()
+    override fun onPause() {
+        super.onPause()
         val shp=this?.getPreferences(Context.MODE_PRIVATE) ?: return
         var editor=shp.edit()
         editor.putBoolean("clearOpt",clearOpt)
