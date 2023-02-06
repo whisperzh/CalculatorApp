@@ -26,7 +26,7 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
         originalButtonColor=binding.button1.drawingCacheBackgroundColor;
-        binding.resultText.isCursorVisible = false
+
         bindNumber()
 
         clearAll()
@@ -158,85 +158,114 @@ class MainActivity : AppCompatActivity() {
     private fun bindOperation(){
 
         binding.buttonSub.setOnClickListener {
-            if(operate_ch!=""&&operate_ch!="sqrt")
+            try{
+                if (operate_ch != "" && operate_ch != "sqrt") {
+                    num2 = binding.resultText.text.toString().toDouble();
+                    num1 = calculate().toDouble();
+                    binding.resultText.setText(num1.toString())
+                    operate_ch = "-"
+                    clearOpt = true
+                } else {
+                    operate_ch = "-"
+                    clearOpt = true
+                    num1 = binding.resultText.text.toString().toDouble();
+                }
+            }catch (error:java.lang.Exception)
             {
-                num2=binding.resultText.text.toString().toDouble();
-                num1=calculate().toDouble();
-                binding.resultText.setText(num1.toString())
-                operate_ch = "-"
-                clearOpt = true
-            }else {
-                operate_ch = "-"
-                clearOpt = true
-                num1 = binding.resultText.text.toString().toDouble();
+                Toast.makeText(this,R.string.input_error_message, Toast.LENGTH_SHORT).show()
+                clearAll()
             }
         }
 
         binding.buttonAdd.setOnClickListener {
-            if(operate_ch!=""&&operate_ch!="sqrt")
+            try{
+                if (operate_ch != "" && operate_ch != "sqrt") {
+                    num2 = binding.resultText.text.toString().toDouble();
+                    num1 = calculate().toDouble();
+                    binding.resultText.setText(num1.toString())
+                    operate_ch = "+"
+                    clearOpt = true
+                } else {
+                    operate_ch = "+"
+                    clearOpt = true
+                    num1 = binding.resultText.text.toString().toDouble();
+                }
+            }catch (error:java.lang.Exception)
             {
-                num2=binding.resultText.text.toString().toDouble();
-                num1=calculate().toDouble();
-                binding.resultText.setText(num1.toString())
-                operate_ch = "+"
-                clearOpt = true
-            }else {
-                operate_ch = "+"
-                clearOpt = true
-                num1 = binding.resultText.text.toString().toDouble();
+                Toast.makeText(this,R.string.input_error_message, Toast.LENGTH_SHORT).show()
+                clearAll()
             }
         }
 
         binding.buttonDiv.setOnClickListener {
-            if(operate_ch!=""&&operate_ch!="sqrt")
+            try{
+                if (operate_ch != "" && operate_ch != "sqrt") {
+                    num2 = binding.resultText.text.toString().toDouble();
+                    num1 = calculate().toDouble();
+                    binding.resultText.setText(num1.toString())
+                    operate_ch = "/"
+                    clearOpt = true
+                } else {
+                    operate_ch = "/"
+                    clearOpt = true
+                    num1 = binding.resultText.text.toString().toDouble();
+                }
+            }catch (error:java.lang.Exception)
             {
-                num2=binding.resultText.text.toString().toDouble();
-                num1=calculate().toDouble();
-                binding.resultText.setText(num1.toString())
-                operate_ch = "/"
-                clearOpt = true
-            }else {
-                operate_ch = "/"
-                clearOpt = true
-                num1 = binding.resultText.text.toString().toDouble();
+                Toast.makeText(this,R.string.input_error_message, Toast.LENGTH_SHORT).show()
+                clearAll()
             }
         }
 
         binding.buttonMul.setOnClickListener {
-            if(operate_ch!=""&&operate_ch!="sqrt")
+            try{
+                if (operate_ch != "" && operate_ch != "sqrt") {
+                    num2 = binding.resultText.text.toString().toDouble();
+                    num1 = calculate().toDouble();
+                    binding.resultText.setText(num1.toString())
+                    operate_ch = "*"
+                    clearOpt = true
+                } else {
+                    operate_ch = "*"
+                    clearOpt = true
+                    num1 = binding.resultText.text.toString().toDouble();
+                }
+            }catch (error:java.lang.Exception)
             {
-                num2=binding.resultText.text.toString().toDouble();
-                num1=calculate().toDouble();
-                binding.resultText.setText(num1.toString())
-                operate_ch = "*"
-                clearOpt = true
-            }else {
-                operate_ch = "*"
-                clearOpt = true
-                num1 = binding.resultText.text.toString().toDouble();
+                Toast.makeText(this,R.string.input_error_message, Toast.LENGTH_SHORT).show()
+                clearAll()
             }
         }
 
         binding.buttonSqrt.setOnClickListener {
-            operate_ch="sqrt"
-            num1=binding.resultText.text.toString().toDouble();
-            binding.resultText.setText(sqrt(num1).toString())
-            num1= sqrt(num1)
-            clearOpt=true
+            try{
+                operate_ch = "sqrt"
+                num1 = binding.resultText.text.toString().toDouble();
+                binding.resultText.setText(sqrt(num1).toString())
+                num1 = sqrt(num1)
+                clearOpt = true
+            }catch (error:java.lang.Exception)
+            {
+                Toast.makeText(this,R.string.input_error_message, Toast.LENGTH_SHORT).show()
+                clearAll()
+            }
         }
 
         binding.buttonEqual.setOnClickListener {
-            num2=binding.resultText.text.toString().toDouble();
-            binding.resultText.setText(calculate())
-            clearOpt=true
-            operate_ch=""
+            try {
+                num2=binding.resultText.text.toString().toDouble();
+                binding.resultText.setText(calculate())
+                clearOpt=true
+                operate_ch=""
+            }catch (error:java.lang.Exception)
+            {
+                Toast.makeText(this,R.string.input_error_message, Toast.LENGTH_SHORT).show()
+                clearAll()
+            }
+
         }
         binding.buttonClear.setOnClickListener {
-            num1= Double.NaN
-            num2= Double.NaN
-            clearOpt=true
-            operate_ch=""
-            binding.resultText.setText("0.0")
+            clearAll()
         }
     }
 
@@ -271,8 +300,10 @@ class MainActivity : AppCompatActivity() {
     private fun clearAll(){
         num1= Double.NaN
         num2=Double.NaN
-        operate_ch=""
         clearOpt=true
+        operate_ch=""
+        binding.resultText.setText("0.0")
+
     }
 
 }
